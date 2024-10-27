@@ -101,10 +101,12 @@ class ShoeResource extends Resource
             ->filters([
                 SelectFilter::make('category_id')
                     ->label('category')
+                    ->native(false)
                     ->relationship('category', 'name'),
                 SelectFilter::make('brand_id')
                     ->label('brand')
-                    ->relationship('brand', 'name')
+                    ->native(false)
+                    ->relationship('brand', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
