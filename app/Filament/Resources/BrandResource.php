@@ -23,7 +23,12 @@ class BrandResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->maxLength(255)
+                    ->required(),
+                Forms\Components\FileUpload::make('logo')
+                    ->image()
+                    ->required(),
             ]);
     }
 
@@ -31,13 +36,19 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('logo')
+                    ->circular(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->iconButton(),
+                Tables\Actions\DeleteAction::make()
+                    ->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

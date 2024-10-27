@@ -19,12 +19,12 @@ class Shoe extends Model
         'about',
         'price',
         'stock',
-        'is_popuar',
+        'is_popular',
         'category_id',
         'brand_id',
     ];
 
-    public function setNameatribute($value)
+    public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
