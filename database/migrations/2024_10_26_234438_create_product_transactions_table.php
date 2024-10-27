@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->foreignId('booking_trx_id');
+            $table->string('booking_trx_id');
             $table->string('city');
             $table->string('post_code');
             $table->string('proof');
@@ -32,8 +32,8 @@ return new class extends Migration
 
             $table->boolean('is_paid');
 
-            $table->foreignId('shoe_id')->constrained()->onDelete();
-            $table->foreignId('promo_code_id')->nullable()->constrained()->onDelete();
+            $table->foreignId('shoe_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('promo_code_id')->nullable()->constrained()->cascadeOnDelete();
 
             $table->softDeletes();
             $table->timestamps();

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('stock');
             $table->boolean('is_popuar');
-            $table->foreignId('category_id')->constrained()->onDelete();
-            $table->foreignId('brand_id')->constrained()->onDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

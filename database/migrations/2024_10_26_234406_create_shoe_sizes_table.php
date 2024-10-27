@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shoe_sizes', function (Blueprint $table) {
             $table->id();
             $table->string('size');
-            $table->foreignId('shoe_id')->constrained()->onDelete();
+            $table->foreignId('shoe_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
