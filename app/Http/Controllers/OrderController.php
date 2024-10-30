@@ -50,6 +50,7 @@ class OrderController extends Controller
     public function payment()
     {
         $data = $this->orderService->getOrderDetails();
+        dd($data);
         return view('order.payment', $data);
     }
 
