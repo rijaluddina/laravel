@@ -133,7 +133,7 @@ class OrderForm extends Component
         $bookingData = $this->getherBookingData($validated);
         $this->orderService->updateCustomerData($bookingData);
 
-        return redirect()->route('front.payment');
+        return redirect()->route('front.customer_data');
     }
 
     public function render()

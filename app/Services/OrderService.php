@@ -40,6 +40,11 @@ class OrderService
         $this->orderRepository->saveToSession($orderData);
     }
 
+    public function getMyOrderDetails(array $validated)
+    {
+        return $this->orderRepository->findByTrxIdAndPhoneNumber($validated['booking_trx_id'], $validated['phone']);
+    }
+
     public function getOrderDetails()
     {
         $orderData = $this->orderRepository->getOrderDataFromSession();
@@ -65,7 +70,7 @@ class OrderService
         $promo = $this->promoCodeRepository->findByCode($code);
 
         if ($promo) {
-            $discount = $promo->dicount_amount;
+            $discount = $promo->discount_amount;
             $grandTotalAmount = $subtotalAmount - $discount;
             $promoCodeId = $promo->id;
 
@@ -122,6 +127,8 @@ class OrderService
 
                 $newTransaction = $this->orderRepository->createTransaction($validated);
                 $productTransactionId = $newTransaction->id;
+
+                $this->orderRepository->clearSessionData();
             });
         } catch (\Exception $e) {
             Log::error('Error in payment confirmation: ' . $e->getMessage());

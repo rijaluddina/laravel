@@ -31,7 +31,7 @@ class ProductTransaction extends Model
 
     public static function generateUniqueTrxId()
     {
-        $prefix =  'TRX'; //'TRX-' . date('Y') . '-' . date('m') . '-' . date('d') . '-';
+        $prefix =  'WIPO-' . date('Y') . date('m') . date('d') . '-';
         do {
             $randomSring = $prefix . mt_rand(1000, 9999);
         } while (self::where('booking_trx_id', $randomSring)->exists());
