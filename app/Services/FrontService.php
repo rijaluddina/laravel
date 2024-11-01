@@ -18,6 +18,11 @@ class FrontService
         $this->categoryRepository = $categoryRepository;
     }
 
+    public function searchShoes(string $keyword)
+    {
+        return $this->shoeRepository->searchByName($keyword);
+    }
+
     public function searchByName(string $keyword)
     {
         return $this->shoeRepository->searchByName($keyword);
